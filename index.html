@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Web OTP API Simplest</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1>
+    The simplest Web OTP API demo
+  </h1>
+  <script>
+    if ('OTPCredential' in window) {
+      window.addEventListener('DOMContentLoaded', e => {
+        const ac = new AbortController();
+        navigator.credentials.get({
+          otp: { transport: ['sms'] },
+          signal: ac.signal
+        }).then((otp, otp2, otp3) => {
+          alert(otp, otp2, otp3)
+        }).catch(err => {
+          alert(`error`, err);
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
